@@ -1,0 +1,39 @@
+.entrance {
+    margin-top: 20% !important;
+}
+
+/* .samp {
+    margin-top:5px;
+}
+*/
+
+
+
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding-top: 20px;
+    display: flex;
+    gap: 30px;
+}
+
+@media (max-width: 890px)  {
+    .container {
+        flex-direction: column;
+    }
+    .right {
+        text-align: center;
+    }
+}
+
+@media (max-width: 400px)  {
+    .laptop {
+        width: 100px;
+        height: 100px;
+    }
+}
+
+.left,
+.right {
+    flex: 0 0 50%;
+}
