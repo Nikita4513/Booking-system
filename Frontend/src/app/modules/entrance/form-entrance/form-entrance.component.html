@@ -1,0 +1,39 @@
+<div class="container">
+    <div class="left">
+        <div class="entrance">
+            <div class="text-container">
+                <h3>Lorem ipsum dolor sit amet.</h3>
+                <samp>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt optio eum nihil maxime deleniti aliquam.</samp>
+            </div>
+            <div class="form-floating mb-3">
+                <input type="email" formControlName="email" class="form-control" id="floatingInput" placeholder="name@example.com" required>
+                <label for="floatingInput">Email</label>
+            </div>
+            <div class="form-floating">
+                <input type="password" formControlName="password" class="form-control" id="floatingPassword" placeholder="Password">
+                <label for="floatingPassword">Password</label>
+            </div>
+            <div class="login-btn">
+                <button type="submit" class="btn btn-secondary" (click)="login()">Войти</button>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                <label class="form-check-label" for="flexCheckDefault">
+                  Запомнить меня
+                </label>
+            </div>
+           
+        </div>
+    </div>
+    <div class="right">
+            <img class="laptop" src="../../../assets/laptop.svg ">
+    </div>
+</div>
+
+<div *ngIf="email?.status == 'INVALID'"
+    class="alert alert-danger">
+</div>
+
+<div *ngIf="password?.status == 'INVALID'"
+    class="alert alert-danger">
+</div>
