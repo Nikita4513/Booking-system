@@ -20,38 +20,14 @@ export class FormEntranceComponent implements OnInit {
      }
 
   ngOnInit(): void {
-    debugger
-    this.authForm = new FormGroup({
-      email: new FormControl("emailg", [
-        Validators.required,
-        Validators.email
-      ]),
-      password: new FormControl(this.password, [
-        Validators.email
-      ])
-    });
-    
-    this.authForm.statusChanges.subscribe(
-      _ => console.log(1)
-    );
   }
 
   login(){
     this.account.login("fuck", "fuck", true).subscribe(
-      _ => this.router.navigate(['/devices'])
+      _ => {
+        this.account.authorized = true;
+        this.router.navigate(['account', 'devices'])
+      }
     );
   }
-
-  get email() {
-    const res = this.authForm.get('email');
-    console.log(res);
-    return res;
-  }
-
-  get password() {
-    const res = this.authForm.get('password');
-    console.log(res);
-    return res;
-  }
-
 }

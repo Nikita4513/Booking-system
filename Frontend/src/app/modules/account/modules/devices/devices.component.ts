@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { AccountService } from 'src/app/services/account.service';
+import { IDevice, IDevices } from './models/interfaces';
+import { DevicesService } from './services/devices.service';
 
 @Component({
   selector: 'app-devices',
@@ -6,13 +9,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./devices.component.css']
 })
 export class DevicesComponent implements OnInit {
-  items: string[];
+  devices: IDevice[] = [];
 
-  constructor() { 
-    this.items = new Array<string>();
-    for (let i=0; i<100; i++) {
-      this.items.push(`устройство номер ${i}`);
-    }
+  constructor(
+    private devicesService: DevicesService,
+  ) {
+    this.devicesService.getAllDevices().subscribe(d => {
+      this.devices = d;
+    })
+   
   }
 
   ngOnInit(): void {

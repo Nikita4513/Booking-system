@@ -1,0 +1,8 @@
+<div class="list-group">
+    <app-device-item *ngFor="let device of devices"
+        [id]="device.id"
+        [name]="device.name"
+        [year]="device.year"
+        [description]="device.description"
+    ></app-device-item>
+</div>
