@@ -6,7 +6,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class AccountService {
 
-
+  public authorized: boolean = false;
   private host: string = "localhost:44382";
 
   constructor(
@@ -14,10 +14,12 @@ export class AccountService {
   ) { }
 
   login(email: string, password: string, rememberMe: boolean){
-    return this.http.post(`https://${this.host}/user/login`, {
+    return this.http.post<Response>(`https://${this.host}/user/login`, {
       "nickname": email,
       "password": password,
       "rememberMe": rememberMe
+    }, {
+      withCredentials: true
     })
   }
 }
