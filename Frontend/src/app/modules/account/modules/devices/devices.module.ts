@@ -5,16 +5,22 @@ import { DevicesRoutingModule } from './devices-routing.module';
 import { DevicesComponent } from './devices.component';
 import { DevicesListComponent } from './components/devices-list/devices-list.component';
 import { DeviceItemComponent } from './components/device-item/device-item.component';
+import { DeviceDescriptionComponent } from './components/device-description/device-description.component';
+import { BookingsHistoryComponent } from './components/bookings-history/bookings-history.component';
+import { DevicePropertiesComponent } from './components/device-properties/device-properties.component';
 
 @NgModule({
   declarations: [
     DevicesComponent,
     DevicesListComponent,
-    DeviceItemComponent
-  ],
+    DeviceItemComponent,
+    DeviceDescriptionComponent,
+    BookingsHistoryComponent,
+    DevicePropertiesComponent
+    ],
   imports: [
     CommonModule,
-    DevicesRoutingModule,
+    DevicesRoutingModule
   ]
 })
 export class DevicesModule { }

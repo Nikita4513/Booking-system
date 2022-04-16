@@ -10,14 +10,15 @@ import { EntranceModule } from './modules/entrance/entrance.module';
 import { AccountService } from './services/account.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSliderModule } from '@angular/material/slider';
-
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
     AppComponent,
-    NavbarComponent
+    NavbarComponent,
   ],
   imports: [
+    CommonModule,
     MatSliderModule,
     EntranceModule,
     AccountModule,
