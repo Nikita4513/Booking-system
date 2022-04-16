@@ -1,0 +1,12 @@
+.book-container {
+    /* margin-left: 30%; */
+    /* margin: 10 10 10 10; */
+    margin-left: 20px;
+    margin-right: 20px;
+    text-align: center;
+    /* vertical-align: center; */
+}
+
+.form-control-plaintext {
+    text-align: center;
+}

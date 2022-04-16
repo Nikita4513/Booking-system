@@ -1,12 +1,10 @@
 import { Component, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { BookingComponent } from './booking.component';
+import { BookDeviceComponent } from './components/book/book.component';
 
 const routes: Routes = [
-  { path: '', component: BookingComponent,
-    children: [
-      { path: 'book/:id', component: BookingComponent }
-    ]}
+  { path: 'book/:id', component: BookDeviceComponent }
 ];
 
 @NgModule({
