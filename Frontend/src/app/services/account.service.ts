@@ -1,25 +1,29 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Observable, of, switchMap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AccountService {
 
-  public authorized: boolean = false;
+  public isAuthorized: boolean = false;
   private host: string = "localhost:44382";
 
   constructor(
     private http: HttpClient
   ) { }
 
-  login(email: string, password: string, rememberMe: boolean){
+  public login(email: string, password: string, rememberMe: boolean) : Observable<boolean> {
     return this.http.post<Response>(`https://${this.host}/user/login`, {
-      "nickname": email,
-      "password": password,
-      "rememberMe": rememberMe
+      nickname: email,
+      password,
+      rememberMe
     }, {
       withCredentials: true
-    })
+    }).pipe(switchMap(x => {
+      this.isAuthorized = true;
+      return of(true);
+    }))
   }
 }

@@ -25,8 +25,7 @@ export class FormEntranceComponent implements OnInit {
   login(){
     this.account.login("fuck", "fuck", true).subscribe(
       _ => {
-        this.account.authorized = true;
-        this.router.navigate(['account', 'devices'])
+        this.router.navigate(['/account/devices'])
       }
     );
   }

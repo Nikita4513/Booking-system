@@ -7,6 +7,10 @@ import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { AccountModule } from './modules/account/account.module';
 import { EntranceModule } from './modules/entrance/entrance.module';
+import { AccountService } from './services/account.service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatSliderModule } from '@angular/material/slider';
+
 
 @NgModule({
   declarations: [
@@ -14,13 +18,16 @@ import { EntranceModule } from './modules/entrance/entrance.module';
     NavbarComponent
   ],
   imports: [
+    MatSliderModule,
     EntranceModule,
     AccountModule,
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule
   ],
   providers: [
+    AccountService
   ],
   bootstrap: [AppComponent]
 })

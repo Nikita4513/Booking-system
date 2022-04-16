@@ -15,9 +15,6 @@ export class AccountComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    if (!this.accountService.authorized) {
-      this.router.navigate(['/entrance'])
-    }
   }
 
 }

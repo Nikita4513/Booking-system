@@ -1,4 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { first, Subject, Subscription, take, takeUntil } from 'rxjs';
 import { IDevice } from '../../models/interfaces';
 import { DevicesService } from '../../services/devices.service';
 
@@ -7,17 +8,26 @@ import { DevicesService } from '../../services/devices.service';
   templateUrl: './devices-list.component.html',
   styleUrls: ['./devices-list.component.css']
 })
-export class DevicesListComponent implements OnInit {
-  devices!: IDevice[];
+export class DevicesListComponent implements OnInit, OnDestroy {
+  public devices!: IDevice[];
+  private unsubscriber: Subject<void> = new Subject<void>();
+
   constructor(
     private deviceService: DevicesService
   ) {
-    deviceService.getAllDevices().subscribe(devices => {
-      this.devices = devices;
-    });
+      deviceService.getAllDevices()
+        .pipe(takeUntil(this.unsubscriber), first())
+        .subscribe(devices => {
+          this.devices = devices;
+        });
   }
 
   ngOnInit(): void {
+  }
+
+  ngOnDestroy(): void {
+    this.unsubscriber.next();
+    this.unsubscriber.complete();
   }
 
 }
