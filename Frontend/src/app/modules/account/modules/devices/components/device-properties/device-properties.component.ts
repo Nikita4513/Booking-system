@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { IDevice } from '../../models/interfaces';
+import { IDevice } from '../../../../models/interfaces';
 
 @Component({
   selector: 'app-device-properties',

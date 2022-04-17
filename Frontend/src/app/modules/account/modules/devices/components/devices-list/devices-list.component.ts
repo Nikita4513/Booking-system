@@ -1,7 +1,7 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { first, Subject, Subscription, take, takeUntil } from 'rxjs';
-import { IDevice } from '../../models/interfaces';
-import { DevicesService } from '../../services/devices.service';
+import { IDevice } from '../../../../models/interfaces';
+import { DevicesService } from '../../../../services/devices.service';
 
 @Component({
   selector: 'app-devices-list',

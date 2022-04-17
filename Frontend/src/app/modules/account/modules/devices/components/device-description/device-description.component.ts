@@ -1,7 +1,7 @@
-import { Component, OnInit, Query } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { IDevice } from '../../models/interfaces';
-import { DevicesService } from '../../services/devices.service';
+import { IDevice } from '../../../../models/interfaces';
+import { DevicesService } from '../../../../services/devices.service';
 
 @Component({
   selector: 'app-device-description',
