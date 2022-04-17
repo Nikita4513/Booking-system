@@ -1,13 +1,12 @@
 <div class="container-md bg-light">{{device.description}}</div>
-<div class="container-md bg-light scrollable">
-<div *ngIf="device.bookings.length === 0">
-    История бронирования пуста
-</div>
-<div *ngIf="device.bookings.length > 0">
-    История бронирования:
-    <div *ngFor="let booking of device.bookings">
-    <div>{{booking.start | date}} - {{booking.end | date}}</div>
-    <div>{{booking.comment}}</div>
+    <div class="container-md bg-light scrollable">
+        <div *ngIf="device.bookings.length === 0">
+            История бронирования пуста
+        </div>
+        <div *ngIf="device.bookings.length > 0">
+            <div *ngFor="let booking of device.bookings">
+            <div>{{booking.start | date}} - {{booking.end | date}} | {{booking.comment}}</div>
+            <!-- <div>{{booking.comment}}</div> -->
+        </div>
     </div>
-</div>
 </div>

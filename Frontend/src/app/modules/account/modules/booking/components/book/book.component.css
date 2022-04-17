@@ -1,12 +1,29 @@
 .book-container {
-    /* margin-left: 30%; */
-    /* margin: 10 10 10 10; */
-    margin-left: 20px;
-    margin-right: 20px;
+    background-color: #f8f9fa;
+    margin: auto;
+    margin-top: 50px;
+    display: table;
     text-align: center;
-    /* vertical-align: center; */
+}
+
+.btn {
+    width: 100%;
+}
+
+.book-form {
+    display: table-cell;
+	vertical-align: middle;
+    width: 500px;
 }
 
 .form-control-plaintext {
+    text-align: center;
+}
+
+.table {
+    margin-bottom: 0px;
+}
+
+.book-title {
     text-align: center;
 }

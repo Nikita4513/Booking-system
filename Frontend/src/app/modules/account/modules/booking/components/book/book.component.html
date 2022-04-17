@@ -1,24 +1,30 @@
+<h2 class="book-title">Бронирование устройства {{device.name}}</h2>
 <div class="book-container">
-    <div class="row">
-        <label for="staticEmail" class="col col-form-label">Email</label>
-        <div class="col">
-            <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="email@example.com">
-        </div>
+  <div class="book-form">
+    <table class="table">
+      <tbody>
+        <tr>
+          <th scope="row">Начало</th>
+          <td>
+            <input type="datetime-local" id="start" name="start"
+              value="{{today}}"
+              min="{{today}}">
+          </td>
+        </tr>
+        <tr>
+          <th scope="row">Конец</th>
+          <td>
+            <input type="datetime-local" id="end" name="start"
+              value="{{today}}"
+              min="{{today}}">
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="form-floating">
+      <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px"></textarea>
+      <label for="floatingTextarea2">Comments</label>
     </div>
-    <div class="row">
-        <label for="start" class="col col-form-label">Начало</label>
-        <div class="col">
-            <input type="date" id="start" name="trip-start"
-            value="2018-07-22"
-            min="2018-01-01" max="2018-12-31">
-        </div>
-    </div>
-    <div class="row">
-        <label for="end" class="col col-form-label">Конец</label>
-        <div class="col">
-            <input type="date" id="end" name="trip-end"
-            value="2018-07-22"
-            min="2018-01-01" max="2018-12-31">
-        </div>
-    </div>
+    <button type="button" class="btn btn-secondary">Забронировать</button>
+  </div>
 </div>
