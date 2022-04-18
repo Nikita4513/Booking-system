@@ -5,12 +5,14 @@ import { BookingRoutingModule } from './booking-routing.module';
 import { BookingComponent } from './booking.component';
 import { BookDeviceComponent } from './components/book/book.component';
 import { BookingService } from './services/booking.service';
+import { AddDeviceComponent } from './components/add-device/add-device.component';
 
 
 @NgModule({
   declarations: [
     BookingComponent,
-    BookDeviceComponent
+    BookDeviceComponent,
+    AddDeviceComponent
   ],
   imports: [
     CommonModule,
