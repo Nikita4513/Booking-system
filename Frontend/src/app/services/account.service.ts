@@ -8,7 +8,7 @@ import { Observable, of, switchMap } from 'rxjs';
 export class AccountService {
 
   public isAuthorized: boolean = false;
-  private host: string = "localhost:44382";
+  public readonly host: string = "localhost:44382";
 
   constructor(
     private http: HttpClient

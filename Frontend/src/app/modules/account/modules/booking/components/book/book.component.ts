@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { IDevice } from 'src/app/modules/account/models/interfaces';
 import { DevicesService } from 'src/app/modules/account/services/devices.service';
+import { BookingService } from '../../services/booking.service';
 
 @Component({
   selector: 'app-book-device',
@@ -15,7 +16,8 @@ export class BookDeviceComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private devicesService: DevicesService
+    private devicesService: DevicesService,
+    private bookingService: BookingService
   ) {
    }
 
@@ -25,6 +27,15 @@ export class BookDeviceComponent implements OnInit {
       .subscribe(device => {
         this.device = device;
       })
+  }
+
+  onBook() {
+    // this.bookingService.bookDevice(this.id).pipe()
+    //   .subscribe(response => {
+    //     response;
+    //   }, error => {
+
+    //   });
   }
 
   get today(): string {

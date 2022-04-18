@@ -5,6 +5,7 @@ import { AccountRoutingModule } from './account-routing.module';
 import { AccountComponent } from './account.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { IsAuthorizedGuard } from './guard/is-authorized.guard';
+import { DevicesService } from './services/devices.service';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { IsAuthorizedGuard } from './guard/is-authorized.guard';
     AccountRoutingModule
   ],
   providers: [
-    IsAuthorizedGuard
+    IsAuthorizedGuard,
+    DevicesService
   ]
 })
 export class AccountModule { }
