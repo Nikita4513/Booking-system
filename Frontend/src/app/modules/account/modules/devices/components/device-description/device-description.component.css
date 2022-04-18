@@ -1,4 +1,4 @@
-.container {
+/* .container {
     max-width: 1000px;
     margin: 0 auto;
     padding-top: 20px;
@@ -9,7 +9,6 @@
 
 
 .laptop {
-    /* margin-top: 10% !important; */
     width: 350px;
     height: 300px;
 }
@@ -36,6 +35,7 @@
     flex: 0 0 50%;
 }
 
+*/
 .book {
     display: block;
     width: 150px;
@@ -45,6 +45,5 @@
     bottom: 10px;
     z-index: 99999;
 }
-
 
 
