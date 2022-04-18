@@ -1,4 +1,19 @@
 <div class="list-group">
+    <div class="input-group">
+        <input type="text" class="form-control" placeholder="Найти" aria-describedby="button-addon2">
+        <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+              Фильтровать по
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+              <li><a class="dropdown-item">Названию</a></li>
+              <li><a class="dropdown-item">Году выпуска</a></li>
+            </ul>
+          </div>
+        <button class="btn btn-secondary" type="button" id="button-addon2">Найти</button>
+    </div>
+  
+    
     <app-device-item *ngFor="let device of devices"
         [id]="device.id"
         [name]="device.name"
