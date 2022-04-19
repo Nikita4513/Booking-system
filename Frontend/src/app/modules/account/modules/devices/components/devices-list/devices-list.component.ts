@@ -30,4 +30,10 @@ export class DevicesListComponent implements OnInit, OnDestroy {
     this.unsubscriber.complete();
   }
 
+  onDropdownItemClick(event: any){
+    console.log(event);
+    const dropDownMenu = document.querySelector('.dropdown-toggle');
+    dropDownMenu!.innerHTML = event.srcElement.outerText;
+  }
+
 }

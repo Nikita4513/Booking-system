@@ -8,6 +8,7 @@ import { DeviceItemComponent } from './components/device-item/device-item.compon
 import { DeviceDescriptionComponent } from './components/device-description/device-description.component';
 import { BookingsHistoryComponent } from './components/bookings-history/bookings-history.component';
 import { DevicePropertiesComponent } from './components/device-properties/device-properties.component';
+import { DropdownFilterComponent } from './components/dropdown-filter/dropdown-filter.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { DevicePropertiesComponent } from './components/device-properties/device
     DeviceItemComponent,
     DeviceDescriptionComponent,
     BookingsHistoryComponent,
-    DevicePropertiesComponent
+    DevicePropertiesComponent,
+    DropdownFilterComponent
     ],
   imports: [
     CommonModule,
