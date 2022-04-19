@@ -1,0 +1,49 @@
+/* .container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding-top: 20px;
+    display: flex;
+    gap: 10px;
+}
+
+
+
+.laptop {
+    width: 350px;
+    height: 300px;
+}
+
+@media (max-width: 890px)  {
+    .container {
+        flex-direction: column-reverse;
+    }
+    .right {
+        text-align: center;
+    }
+}
+
+@media (max-width: 400px)  {
+    .laptop {
+        width: 100px;
+        height: 100px;
+    }
+}
+
+.left,
+.right {
+    text-align: center;
+    flex: 0 0 50%;
+}
+
+*/
+.book {
+    display: block;
+    width: 150px;
+    height: 80px;
+    position: fixed;
+    right: 10px;
+    bottom: 10px;
+    z-index: 99999;
+}
+
+

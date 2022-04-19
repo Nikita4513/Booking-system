@@ -1,0 +1,13 @@
+<div class="input-group">
+    <input type="text" class="form-control" placeholder="Найти" aria-describedby="button-addon2">
+    <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+          Фильтровать
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+          <li><a class="dropdown-item" (click)="onDropdownItemClick($event)">По названию</a></li>
+          <li><a class="dropdown-item" (click)="onDropdownItemClick($event)">По году выпуска</a></li>
+        </ul>
+      </div>
+    <!-- <button class="btn btn-secondary" type="button" id="button-addon2">Найти</button> -->
+</div>

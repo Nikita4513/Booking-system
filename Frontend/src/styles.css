@@ -1,1 +1,26 @@
 /* You can add global styles to this file, and also import other style files */
+/* body {
+    height: 93vh;
+    overflow: hidden;
+} */
+/* html, body { height: 100%; } */
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+@media (min-width: 891px)  {
+    body {
+        height: 93vh;
+        overflow: hidden;
+    }
+}
+
+@media (max-width: 890px)  {
+    .body {
+        overflow: auto;
+    }
+}
+
+@media (max-width: 400px)  {
+    .body {
+        overflow: auto;
+    }
+}

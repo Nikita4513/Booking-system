@@ -1,0 +1,30 @@
+<h2 class="book-title">Бронирование устройства {{device.name}}</h2>
+<div class="book-container">
+  <div class="book-form">
+    <table class="table">
+      <tbody>
+        <tr>
+          <th scope="row">Начало</th>
+          <td>
+            <input type="datetime-local" id="start" name="start"
+              value="{{today}}"
+              min="{{today}}">
+          </td>
+        </tr>
+        <tr>
+          <th scope="row">Конец</th>
+          <td>
+            <input type="datetime-local" id="end" name="start"
+              value="{{today}}"
+              min="{{today}}">
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="form-floating">
+      <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px"></textarea>
+      <label for="floatingTextarea2">Comments</label>
+    </div>
+    <button type="button" class="btn btn-secondary">Забронировать</button>
+  </div>
+</div>
