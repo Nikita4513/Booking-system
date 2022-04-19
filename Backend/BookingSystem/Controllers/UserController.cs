@@ -63,5 +63,15 @@ namespace BookingSystem.Controllers
             }
             return BadRequest();
         }
+        
+        /// <summary>
+        /// Получить данные пользователя
+        /// </summary>
+        [HttpGet("user")]
+        public async Task<IActionResult> GetUserDataAsync()
+        {
+            var user = await userManager.GetUserAsync(User);
+            return Ok(new UserModel(user));
+        }
     }
 }
