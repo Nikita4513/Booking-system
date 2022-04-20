@@ -69,6 +69,7 @@ namespace BookingSystem
             app.UseCors(builder =>
             {
                 builder.WithOrigins("http://127.0.0.1:5500")
+                       .WithOrigins("https://localhost:4200")
                        .AllowAnyHeader()
                        .AllowAnyMethod()
                        .AllowCredentials();
