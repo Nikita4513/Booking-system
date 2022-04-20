@@ -67,7 +67,7 @@ namespace BookingSystem.Controllers
         /// <summary>
         /// Получить данные пользователя
         /// </summary>
-        [HttpGet("user")]
+        [HttpGet("")]
         public async Task<IActionResult> GetUserDataAsync()
         {
             var user = await userManager.GetUserAsync(User);
