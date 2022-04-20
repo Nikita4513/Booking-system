@@ -73,5 +73,15 @@ namespace BookingSystem.Controllers
             var user = await userManager.GetUserAsync(User);
             return Ok(new UserModel(user));
         }
+
+        /// <summary>
+        /// Проверка авторизован ли пользователь
+        /// </summary>
+        
+        [HttpGet("auth")]
+        public async Task<IActionResult> IsAuthorized()
+        {
+            return Ok(new AuthData() { IsAuthorized = User.Identity.IsAuthenticated });
+        }
     }
 }
