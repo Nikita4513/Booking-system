@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, of, switchMap } from 'rxjs';
+import { map, Observable, of, switchMap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AccountService {
 
-  public isAuthorized: boolean = false;
+  
   public readonly host: string = "localhost:44382";
 
   constructor(
@@ -22,8 +22,19 @@ export class AccountService {
     }, {
       withCredentials: true
     }).pipe(switchMap(x => {
-      this.isAuthorized = true;
+      //this.isAuthorized = true;
       return of(true);
     }))
   }
+
+  public isAuthorized() : Observable<boolean> {
+    return this.http.get<IResponseAuth>('https://localhost:44382/user/auth', {
+        withCredentials: true
+      })
+      .pipe(map(res => res.isAuthorized));
+  }
+}
+
+export interface IResponseAuth {
+  isAuthorized: boolean
 }
