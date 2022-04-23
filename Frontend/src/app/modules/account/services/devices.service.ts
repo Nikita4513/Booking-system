@@ -7,7 +7,6 @@ import { AccountService } from 'src/app/services/account.service';
 
 @Injectable()
 export class DevicesService {
-  devices!: IDevices;
 
   constructor(
     private http: HttpClient,
@@ -19,6 +18,14 @@ export class DevicesService {
 
    public getAllDevices() : Observable<IDevice[]>{
     const url = `https://${this.accountService.host}/device/not-booked`;
+    const options = {
+      withCredentials: true
+    }
+    return this.http.get<IDevice[]>(url, options);
+  }
+
+  public getUserDevices() : Observable<IDevice[]>{
+    const url = `https://${this.accountService.host}/device/my-bookings`;
     const options = {
       withCredentials: true
     }

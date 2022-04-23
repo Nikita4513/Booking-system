@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { IDevice } from '../../models/interfaces';
+import { DevicesService } from '../../services/devices.service';
 
 @Component({
   selector: 'app-user',
@@ -7,7 +9,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+  ) { }
 
   ngOnInit(): void {
   }
