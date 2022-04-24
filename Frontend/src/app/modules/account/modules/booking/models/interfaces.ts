@@ -11,3 +11,18 @@ export interface IAddDeviceData {
     year: number,
     description: string
 }
+
+export interface IBookDeviceData {
+    id: number,
+    start: string,
+    end: string,
+    comment: string
+}
+
+export interface IBookDeviceResponse {
+    id: number
+    deviceId: number,
+    start: string,
+    end: string,
+    comment: string
+}

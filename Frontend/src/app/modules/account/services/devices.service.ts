@@ -3,7 +3,7 @@ import { HttpClient, HttpResponse } from '@angular/common/http';
 import { IDevice, IDevices } from '../models/interfaces';
 import { map, Observable } from 'rxjs';
 import { AccountService } from 'src/app/services/account.service';
-import { IAddDeviceData } from '../modules/booking/models/interfaces';
+import { IAddDeviceData, IBookDeviceData, IBookDeviceResponse } from '../modules/booking/models/interfaces';
 
 @Injectable()
 export class DevicesService {
@@ -39,9 +39,16 @@ export class DevicesService {
     return this.http.get<IDevice>(url, options);
   }
 
-  public addDevice(data: IAddDeviceData) {
+  public addDevice(data: IAddDeviceData) :Observable<void> {
     const url = `https://${this.accountService.host}/device`;
-    return this.http.post(url, data, {
+    return this.http.post<void>(url, data, {
+      withCredentials: true
+    })
+  }
+
+  public bookDevice(data: IBookDeviceData) : Observable<IBookDeviceResponse> {
+    const url = `https://${this.accountService.host}/device/${data.id}/book`;
+    return this.http.post<IBookDeviceResponse>(url, data, {
       withCredentials: true
     })
   }
