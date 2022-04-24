@@ -1,26 +1,28 @@
-<h2 class="book-title">Добавление своего устройства</h2>
-<div class="book-container">
-  <div class="book-form">
-    <table class="table">
-      <tbody>
-        <tr>
-          <th scope="row">Название</th>
-          <td>
-            <input type="text">
-          </td>
-        </tr>
-        <tr>
-          <th scope="row">Год</th>
-          <td>
-            <input type="number">
-          </td>
-        </tr>
-      </tbody>
-    </table>
-    <div class="form-floating">
-      <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px"></textarea>
-      <label for="floatingTextarea2">Описание</label>
+<form [formGroup]="addDeviceForm" (ngSubmit)="addDevice()">
+  <h2 class="book-title">Добавление своего устройства</h2>
+  <div class="book-container">
+    <div class="book-form">
+      <table class="table">
+        <tbody>
+          <tr>
+            <th scope="row">Название</th>
+            <td>
+              <input type="text" formControlName="name" required>
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">Год</th>
+            <td>
+              <input type="number" placeholder="{{currentYear}}" [max]="currentYear" formControlName="year" required>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="form-floating">
+        <textarea formControlName="description" class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px" required></textarea>
+        <label for="floatingTextarea2">Описание</label>
+      </div>
+      <button [disabled]="!addDeviceForm.valid" type="submit" class="btn btn-secondary">Добавить</button>
     </div>
-    <button type="button" class="btn btn-secondary">Добавить</button>
   </div>
-</div>
+</form>

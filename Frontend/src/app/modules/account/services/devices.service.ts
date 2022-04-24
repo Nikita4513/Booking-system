@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpResponse } from '@angular/common/http';
 import { IDevice, IDevices } from '../models/interfaces';
 import { map, Observable } from 'rxjs';
 import { AccountService } from 'src/app/services/account.service';
-
+import { IAddDeviceData } from '../modules/booking/models/interfaces';
 
 @Injectable()
 export class DevicesService {
@@ -14,7 +14,6 @@ export class DevicesService {
   ) {
       this.getAllDevices();
    }
-
 
    public getAllDevices() : Observable<IDevice[]>{
     const url = `https://${this.accountService.host}/device/not-booked`;
@@ -38,5 +37,12 @@ export class DevicesService {
       withCredentials: true
     }
     return this.http.get<IDevice>(url, options);
+  }
+
+  public addDevice(data: IAddDeviceData) {
+    const url = `https://${this.accountService.host}/device`;
+    return this.http.post(url, data, {
+      withCredentials: true
+    })
   }
 }

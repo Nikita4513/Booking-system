@@ -5,3 +5,9 @@ export interface IBookingData {
     end: Date;
     comment: string;
 }
+
+export interface IAddDeviceData {
+    name: string,
+    year: number,
+    description: string
+}
