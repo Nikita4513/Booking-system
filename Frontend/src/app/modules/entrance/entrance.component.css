@@ -1,0 +1,34 @@
+.laptop {
+    margin-top: 10% !important;
+    width: 80%;
+    height: 80%;
+}
+
+@media (max-width: 890px)  {
+    .container {
+        flex-direction: column;
+    }
+    .right {
+        text-align: center;
+    }
+}
+
+@media (max-width: 400px)  {
+    .laptop {
+        width: 100px;
+        height: 100px;
+    }
+}
+
+.left,
+.right {
+    flex: 0 0 50%;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding-top: 20px;
+    display: flex;
+    gap: 10px;
+}
