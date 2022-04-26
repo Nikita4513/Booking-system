@@ -6,7 +6,7 @@ import { DevicesComponent } from '../../../devices/devices.component';
   templateUrl: './booked-device-item.component.html',
   styleUrls: ['./booked-device-item.component.css']
 })
-export class DeviceItemComponent implements OnInit {
+export class BookedDeviceItemComponent implements OnInit {
   @Input()id!: number;
   @Input()name!: string;
   @Input()year!: number;
