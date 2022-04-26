@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { IDevice, IDevices } from '../models/interfaces';
-import { map, Observable } from 'rxjs';
+import { map, Observable, of } from 'rxjs';
 import { AccountService } from 'src/app/services/account.service';
 import { IAddDeviceData, IBookDeviceData, IBookDeviceResponse } from '../modules/booking/models/interfaces';
 
@@ -23,12 +23,16 @@ export class DevicesService {
     return this.http.get<IDevice[]>(url, options);
   }
 
-  public getUserDevices() : Observable<IDevice[]>{
+  public getBookedDevices() : Observable<IDevice[]>{
     const url = `https://${this.accountService.host}/device/my-bookings`;
     const options = {
       withCredentials: true
     }
     return this.http.get<IDevice[]>(url, options);
+  }
+
+  public getUserDevices() : Observable<IDevice[]>{
+    return of([]); //TODO: Добавить метод получения добавленных пользователем бутылок
   }
 
   public getDeviceById(id: number) : Observable<IDevice> {

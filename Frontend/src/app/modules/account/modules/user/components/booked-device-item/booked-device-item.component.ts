@@ -1,5 +1,4 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { DeviceItemComponent } from '../../../devices/components/device-item/device-item.component';
 import { DevicesComponent } from '../../../devices/devices.component';
 
 @Component({
@@ -7,7 +6,7 @@ import { DevicesComponent } from '../../../devices/devices.component';
   templateUrl: './booked-device-item.component.html',
   styleUrls: ['./booked-device-item.component.css']
 })
-export class BookedDeviceItemComponent implements OnInit {
+export class DeviceItemComponent implements OnInit {
   @Input()id!: number;
   @Input()name!: string;
   @Input()year!: number;

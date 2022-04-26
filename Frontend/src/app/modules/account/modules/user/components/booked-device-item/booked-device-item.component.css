@@ -1,0 +1,11 @@
+.cancel-btn {
+    text-align: end;
+}
+
+.booked-device {
+    display: flex;
+}
+
+.cancel-icon {
+    height: 10px;
+}

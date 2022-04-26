@@ -1,7 +1,13 @@
-<a class="list-group-item list-group-item-action flex-column align-items-start">
-    <div class="d-flex w-100 justify-content-between">
-    <div class="fs-5">{{ name }}</div>
-    <small class="text-muted">{{ year }}</small>
-    </div>
-    <p class="mb-1">{{ description }}</p>
-</a>
+<div class="booked-device">
+    <a class="list-group-item list-group-item-action flex-column align-items-start"
+        routerLink="../devices/device/{{id}}">
+        <div class="d-flex w-100 justify-content-between">
+        <div class="fs-5">{{ name }}</div>
+        <small class="text-muted">{{ year }}</small>
+        </div>
+        <div class="mb-1">{{ description }}</div>
+    </a>
+    <button class="list-group-item btn btn-outline-secondary">
+        <img class='cancel-icon' src="../../../../../../../assets/cancel.svg">
+    </button>
+</div>

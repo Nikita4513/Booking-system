@@ -15,7 +15,7 @@ export class BookedDevicesListComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.devicesService.getUserDevices()
+    this.devicesService.getBookedDevices()
       .pipe()
       .subscribe(devices => this.bookedDevices = devices)
   }

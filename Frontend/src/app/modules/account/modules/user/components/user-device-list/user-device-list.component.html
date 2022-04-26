@@ -1,8 +1,9 @@
 <div class="list-group">
-    <app-booked-device-item *ngFor="let device of bookedDevices"
+    <h4>Забронированные устройства</h4>
+    <app-booked-device-item *ngFor="let device of userDevices"
         [id]="device.id"
         [name]="device.name"
         [description]="device.description"
         [year]="device.year">
     </app-booked-device-item>
-</div>
+</div> 
