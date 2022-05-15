@@ -1,6 +1,6 @@
 <div class="list-group">
     
-    <app-dropdown-filter></app-dropdown-filter>
+    <app-dropdown-filter (searchChangeValue)="onSearchChanges($event)"></app-dropdown-filter>
     
     <app-device-item *ngFor="let device of devices"
         [id]="device.id"

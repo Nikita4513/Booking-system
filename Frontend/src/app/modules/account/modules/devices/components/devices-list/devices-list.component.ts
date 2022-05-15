@@ -1,5 +1,5 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
-import { first, Subject, Subscription, take, takeUntil } from 'rxjs';
+import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
+import { first, Subject, takeUntil } from 'rxjs';
 import { IDevice } from '../../../../models/interfaces';
 import { DevicesService } from '../../../../services/devices.service';
 
@@ -10,15 +10,18 @@ import { DevicesService } from '../../../../services/devices.service';
 })
 export class DevicesListComponent implements OnInit, OnDestroy {
   public devices!: IDevice[];
+  private allDevices!: IDevice[];
   private unsubscriber: Subject<void> = new Subject<void>();
-
+  @Output('filterChange') update = new EventEmitter();
+  
   constructor(
     private deviceService: DevicesService
   ) {
-      deviceService.getAllDevices()
+      this.deviceService.getAllDevices()
         .pipe(takeUntil(this.unsubscriber), first())
         .subscribe(devices => {
           this.devices = devices;
+          this.allDevices = devices;
         });
   }
 
@@ -30,10 +33,14 @@ export class DevicesListComponent implements OnInit, OnDestroy {
     this.unsubscriber.complete();
   }
 
-  onDropdownItemClick(event: any){
+  public onDropdownItemClick(event: any){
     console.log(event);
     const dropDownMenu = document.querySelector('.dropdown-toggle');
     dropDownMenu!.innerHTML = event.srcElement.outerText;
   }
 
+  public onSearchChanges(value: any) {
+    console.log(value);
+    this.devices = this.allDevices.filter(device => device.name.includes(value))
+  }
 }

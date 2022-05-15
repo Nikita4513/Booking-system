@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-dropdown-filter',
@@ -6,15 +7,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./dropdown-filter.component.css']
 })
 export class DropdownFilterComponent implements OnInit {
+  public search = new FormControl('');
+  @Output() searchChangeValue: EventEmitter<string> = new EventEmitter();
 
   constructor() { }
 
   ngOnInit(): void {
+    this.search.valueChanges.subscribe(value => {
+      this.searchChangeValue.emit(value);
+    })
   }
-
   
-  onDropdownItemClick(event: any){
-    console.log(event);
+  public onDropdownItemClick(event: any, by: string){
     const dropDownMenu = document.querySelector('.dropdown-toggle');
     dropDownMenu!.innerHTML = event.srcElement.outerText;
   }

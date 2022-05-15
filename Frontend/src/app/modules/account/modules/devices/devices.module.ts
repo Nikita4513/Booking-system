@@ -9,6 +9,7 @@ import { DeviceDescriptionComponent } from './components/device-description/devi
 import { BookingsHistoryComponent } from './components/bookings-history/bookings-history.component';
 import { DevicePropertiesComponent } from './components/device-properties/device-properties.component';
 import { DropdownFilterComponent } from './components/dropdown-filter/dropdown-filter.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -18,11 +19,12 @@ import { DropdownFilterComponent } from './components/dropdown-filter/dropdown-f
     DeviceDescriptionComponent,
     BookingsHistoryComponent,
     DevicePropertiesComponent,
-    DropdownFilterComponent
+    DropdownFilterComponent,
     ],
   imports: [
     CommonModule,
-    DevicesRoutingModule
+    DevicesRoutingModule,
+    ReactiveFormsModule,
   ]
 })
 export class DevicesModule { }

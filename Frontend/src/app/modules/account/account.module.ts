@@ -6,16 +6,18 @@ import { AccountComponent } from './account.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { IsAuthorizedGuard } from './guard/is-authorized.guard';
 import { DevicesService } from './services/devices.service';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
   declarations: [
     AccountComponent,
-    NavbarComponent
+    NavbarComponent,
   ],
   imports: [
     CommonModule,
-    AccountRoutingModule
+    AccountRoutingModule,
+    ReactiveFormsModule,
   ],
   providers: [
     IsAuthorizedGuard,
