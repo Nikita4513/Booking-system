@@ -1,5 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { ISearchProperty, SearchBy } from '../../interfaces';
 
 @Component({
   selector: 'app-dropdown-filter',
@@ -10,6 +11,12 @@ export class DropdownFilterComponent implements OnInit {
   public search = new FormControl('');
   @Output() searchChangeValue: EventEmitter<string> = new EventEmitter();
 
+  searchProperties : ISearchProperty[] = [
+    { view: 'По названию', value: SearchBy.name },
+    { view: 'По году выпуска', value: SearchBy.year },
+    { view: 'По описанию', value: SearchBy.description }
+  ];
+
   constructor() { }
 
   ngOnInit(): void {
@@ -18,9 +25,10 @@ export class DropdownFilterComponent implements OnInit {
     })
   }
   
-  public onDropdownItemClick(event: any, by: string){
+  public onDropdownItemClick(event: any, searchProperty: ISearchProperty){
     const dropDownMenu = document.querySelector('.dropdown-toggle');
-    dropDownMenu!.innerHTML = event.srcElement.outerText;
+    dropDownMenu!.innerHTML = searchProperty.view;
   }
 
 }
+

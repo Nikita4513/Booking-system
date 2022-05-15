@@ -40,7 +40,6 @@ export class DevicesListComponent implements OnInit, OnDestroy {
   }
 
   public onSearchChanges(value: any) {
-    console.log(value);
     this.devices = this.allDevices.filter(device => device.name.toLowerCase().includes(value.toLowerCase()))
   }
 }

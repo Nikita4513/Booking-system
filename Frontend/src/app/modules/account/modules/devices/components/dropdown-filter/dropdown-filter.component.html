@@ -5,8 +5,9 @@
           Фильтровать
         </button>
         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-          <li><a class="dropdown-item" (click)="onDropdownItemClick($event, 'По названию')">По названию</a></li>
-          <li><a class="dropdown-item" (click)="onDropdownItemClick($event, 'По году выпуска')">По году выпуска</a></li>
+          <li *ngFor="let property of searchProperties">
+            <a class="dropdown-item" (click)="onDropdownItemClick($event, property)">{{ property.view }}</a>
+          </li>
         </ul>
       </div>
 </div>
