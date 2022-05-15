@@ -2,7 +2,7 @@
     <a class="list-group-item list-group-item-action flex-column align-items-start"
         routerLink="../devices/device/{{id}}">
         <div class="d-flex w-100 justify-content-between">
-        <div class="fs-5">{{ name }}</div>
+        <div class="fs-5">{{ name }}(До {{lastBooking.end | date:"medium"}})</div>
         <small class="text-muted">{{ year }}</small>
         </div>
         <div class="mb-1">{{ description }}</div>

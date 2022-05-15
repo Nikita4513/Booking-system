@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { IBooking } from 'src/app/modules/account/models/interfaces';
 import { DevicesComponent } from '../../../devices/devices.component';
 
 @Component({
@@ -11,10 +12,15 @@ export class BookedDeviceItemComponent implements OnInit {
   @Input()name!: string;
   @Input()year!: number;
   @Input()description!: string;
+  @Input()bookings!: IBooking[];
 
   constructor(
   ) {
   }
   ngOnInit(): void {
+  }
+
+  public get lastBooking() : IBooking {
+    return this.bookings[this.bookings.length - 1];
   }
 }

@@ -3,7 +3,7 @@ export interface IDevice {
     name: string;
     year: number;
     description: string;
-    bookings: any[]
+    bookings: IBooking[]
 }
 
 export interface IBooking {
