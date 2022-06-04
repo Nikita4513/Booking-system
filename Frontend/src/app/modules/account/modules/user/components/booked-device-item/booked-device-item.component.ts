@@ -17,10 +17,25 @@ export class BookedDeviceItemComponent implements OnInit {
   constructor(
   ) {
   }
+  
   ngOnInit(): void {
   }
 
   public get lastBooking() : IBooking {
     return this.bookings[this.bookings.length - 1];
+  }
+
+  public onCancel() : void {
+    const modal = document.getElementById(`my_modal-${this.id}`);
+    if (modal) {
+      modal.style.display = "block";
+    }
+  }
+
+  public onCloseModal() : void {
+    const modal = document.getElementById(`my_modal-${this.id}`);
+    if (modal) {
+      modal.style.display = "none";
+    }
   }
 }
