@@ -3,6 +3,7 @@ export interface IDevice {
     name: string;
     year: number;
     description: string;
+    isBooked: boolean
     bookings: IBooking[]
 }
 

@@ -12,7 +12,7 @@ import { DevicesService } from 'src/app/modules/account/services/devices.service
 export class BookDeviceComponent implements OnInit {
 
   id!: number;
-  device: IDevice = { name: "", id: this.id, year: 0, description: '', bookings: [] };
+  device: IDevice = { name: "", id: this.id, year: 0, description: '', isBooked: false, bookings: [] };
 
   bookForm = new FormGroup({
     start: new FormControl(''),

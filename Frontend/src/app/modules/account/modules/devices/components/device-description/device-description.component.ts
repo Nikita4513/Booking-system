@@ -10,7 +10,7 @@ import { DevicesService } from '../../../../services/devices.service';
 })
 export class DeviceDescriptionComponent implements OnInit {
   id!: number;
-  device: IDevice = { name: "", id: this.id, year: 0, description: '', bookings: [] };
+  device: IDevice = { name: "", id: this.id, year: 0, description: '', isBooked: false, bookings: [] };
   constructor(
     private devicesService: DevicesService,
     private route: ActivatedRoute

@@ -13,6 +13,11 @@ namespace BookingSystem.Models.Device
             Name = dbDevice.Name;
             Year = dbDevice.Year;
             Description = dbDevice.Description;
+            IsBooked = false;
+            if (dbDevice.Bookings != null)
+            {
+                IsBooked = dbDevice.Bookings.Any(b => b.Start <= DateTime.Now && b.End >= DateTime.Now);
+            } 
         }
 
         public DeviceModel(DataBase.Device dbDevice, List<BookingModel> bookings) : this(dbDevice)
@@ -27,5 +32,6 @@ namespace BookingSystem.Models.Device
         public int Year { get; set; }
         public string Description { get; set; }
         public List<BookingModel> Bookings { get; set; }
+        public bool IsBooked { get; set; }
     }
 }

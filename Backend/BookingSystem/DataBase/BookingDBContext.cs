@@ -34,10 +34,11 @@ namespace BookingSystem.DataBase
             {
                 var bookings = Bookings.Where(b => b.DeviceId == device.Id).ToList();
                 var deviceModel = new DeviceModel(device, bookings.Select(b => new BookingModel(b)).ToList());
+                deviceModel.IsBooked = isBookedDevice;
                 if (bookings.Any(b => b.Start <= DateTime.Now && b.End >= DateTime.Now))
                 {
                     if (isBookedDevice)
-                    {
+                    { 
                         devices.Add(deviceModel);
                     }
                 }
