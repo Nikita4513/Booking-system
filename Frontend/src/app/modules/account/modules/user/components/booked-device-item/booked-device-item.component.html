@@ -7,7 +7,7 @@
         </div>
         <div class="mb-1">{{ description }}</div>
     </a>
-    <button class="list-group-item btn btn-outline-secondary" (click)="onCancel()">
+    <button class="list-group-item btn btn-outline-secondary" (click)="onReturn()">
         <img class='cancel-icon' src="../../../../../../../assets/cancel.svg">
     </button>
 </div>
@@ -22,7 +22,7 @@
             <p>Вы уверены, что хотите отменить бронь устройства под названием <b>{{name}}</b>?</p>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-primary">Отменить бронь</button>
+            <button type="button" class="btn btn-primary" (click)="onCancelBooking()">Отменить бронь</button>
             <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="onCloseModal()">Вернуться</button>
           </div>
         </div>

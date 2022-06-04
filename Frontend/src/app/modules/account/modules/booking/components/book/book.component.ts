@@ -16,7 +16,7 @@ export class BookDeviceComponent implements OnInit {
 
   bookForm = new FormGroup({
     start: new FormControl(''),
-    end: new FormControl(),
+    end: new FormControl('', [Validators.required]),
     comment: new FormControl()
   })
 
@@ -38,7 +38,7 @@ export class BookDeviceComponent implements OnInit {
   onBook() {
     this.devicesService.bookDevice({
       id: this.id,
-      start: this.bookForm.value.start,
+      start: new Date().toISOString().slice(0, 16),
       end: this.bookForm.value.end,
       comment: this.bookForm.value.comment,
     }).pipe()
@@ -53,5 +53,9 @@ export class BookDeviceComponent implements OnInit {
 
   get today(): string {
     return new Date().toISOString().split("T")[0];
+  }
+
+  get isDateEarlierToday() : boolean {
+    return Date.parse(this.bookForm.value.end) <= Date.parse(new Date().toISOString())
   }
 }

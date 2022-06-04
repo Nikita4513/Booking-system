@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { IBooking } from 'src/app/modules/account/models/interfaces';
+import { DevicesService } from 'src/app/modules/account/services/devices.service';
 import { DevicesComponent } from '../../../devices/devices.component';
 
 @Component({
@@ -15,6 +17,8 @@ export class BookedDeviceItemComponent implements OnInit {
   @Input()bookings!: IBooking[];
 
   constructor(
+    private devicesService: DevicesService,
+    private router: Router
   ) {
   }
   
@@ -25,7 +29,7 @@ export class BookedDeviceItemComponent implements OnInit {
     return this.bookings[this.bookings.length - 1];
   }
 
-  public onCancel() : void {
+  public onReturn() : void {
     const modal = document.getElementById(`my_modal-${this.id}`);
     if (modal) {
       modal.style.display = "block";
@@ -37,5 +41,16 @@ export class BookedDeviceItemComponent implements OnInit {
     if (modal) {
       modal.style.display = "none";
     }
+  }
+
+  public onCancelBooking() {
+    const id = this.getCurrentBookingId();
+    this.devicesService.cancelBooking(id)
+        .subscribe(() => this.router.navigate(['devices']))
+  }
+
+  private getCurrentBookingId(): number{
+    const currentBooking =  this.bookings.find(x => Date.parse(x.start) <= Date.now() && Date.now() <= Date.parse(x.end));
+    return currentBooking? currentBooking.id : -1;
   }
 }

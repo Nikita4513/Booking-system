@@ -10,8 +10,8 @@ export interface IDevice {
 export interface IBooking {
     id: number;
     deviceId: number;
-    start: any;
-    end: any;
+    start: string;
+    end: string;
     comment: string;
 }
 

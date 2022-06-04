@@ -4,20 +4,20 @@
     <div class="book-form">
       <table class="table">
         <tbody>
-          <tr>
+          <!-- <tr>
             <th scope="row">Начало</th>
             <td>
               <input type="datetime-local" id="start" name="start" formControlName="start"
                 value="{{today}}"
                 min="{{today}}">
             </td>
-          </tr>
+          </tr> -->
           <tr>
-            <th scope="row">Конец</th>
+            <th scope="row">Бронирование до: </th>
             <td>
               <input type="datetime-local" id="end" name="start" formControlName="end"
-                value="{{today}}"
-                min="{{today}}">
+                value="{{today}}">
+                <!-- min="{{today}}"> -->
             </td>
           </tr>
         </tbody>
@@ -27,7 +27,7 @@
         </textarea>
         <label for="floatingTextarea2">Comments</label>
       </div>
-      <button [disabled]="!bookForm.valid" type="submit" class="btn btn-secondary">Забронировать</button>
+      <button [disabled]="!bookForm.valid || isDateEarlierToday" type="submit" class="btn btn-secondary">Забронировать</button>
     </div>
   </div>
 </form>

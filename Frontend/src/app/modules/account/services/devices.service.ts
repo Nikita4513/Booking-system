@@ -56,4 +56,11 @@ export class DevicesService {
       withCredentials: true
     })
   }
+
+  public cancelBooking(id: number) : Observable<void> {
+    const url = `https://${this.accountService.host}/device/${id}/cancel-book`;
+    return this.http.post<void>(url, {}, {
+      withCredentials: true
+    })
+  }
 }

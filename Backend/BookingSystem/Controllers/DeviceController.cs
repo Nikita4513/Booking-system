@@ -83,13 +83,13 @@ namespace BookingSystem.Controllers
                 var device = db.Devices.FirstOrDefault(d => d.Id == id);
                 if (device == null)
                 {
-                    return BadRequest();
+                    return BadRequest(null);
                 }
                 var bookings = db.Bookings.Where(b => b.Device.Id == device.Id);
-                if (bookings.Any(b => !(b.Start < model.Start && b.End < model.Start || b.Start > model.End && b.End > model.End)))
+                /*if (bookings.Any(b => !(b.Start < model.Start && b.End < model.Start || b.Start > model.End && b.End > model.End)))
                 {
-                    return BadRequest();
-                }
+                    return BadRequest(bookings);
+                }*/
                 var booking = new Booking { Start = model.Start, End = model.End, Comment = model.Comment, Device = device, User = await userManager.GetUserAsync(User) };
                 db.Bookings.Add(booking);
                 db.SaveChanges();
@@ -110,7 +110,7 @@ namespace BookingSystem.Controllers
             var user = await userManager.GetUserAsync(User);
             if (booking == null || booking.UserId != user.Id || booking.End < DateTime.UtcNow)
             {
-                return BadRequest();
+                return BadRequest(user);
             }
             if (booking.Start > DateTime.Now)
             {
