@@ -1,5 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { first, Subject, takeUntil } from 'rxjs';
 import { IBooking } from 'src/app/modules/account/models/interfaces';
 import { DevicesService } from 'src/app/modules/account/services/devices.service';
 import { DevicesComponent } from '../../../devices/devices.component';
@@ -9,7 +10,10 @@ import { DevicesComponent } from '../../../devices/devices.component';
   templateUrl: './booked-device-item.component.html',
   styleUrls: ['./booked-device-item.component.css']
 })
-export class BookedDeviceItemComponent implements OnInit {
+export class BookedDeviceItemComponent implements OnInit, OnDestroy {
+
+  private unsubscriber: Subject<void> = new Subject<void>();
+
   @Input()id!: number;
   @Input()name!: string;
   @Input()year!: number;
@@ -23,6 +27,11 @@ export class BookedDeviceItemComponent implements OnInit {
   }
   
   ngOnInit(): void {
+  }
+
+  ngOnDestroy() : void {
+    this.unsubscriber.next();
+    this.unsubscriber.complete();
   }
 
   public get lastBooking() : IBooking {
@@ -46,6 +55,7 @@ export class BookedDeviceItemComponent implements OnInit {
   public onCancelBooking() {
     const id = this.getCurrentBookingId();
     this.devicesService.cancelBooking(id)
+        .pipe(takeUntil(this.unsubscriber), first())
         .subscribe(() => this.router.navigate(['devices']))
   }
 

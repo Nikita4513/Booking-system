@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Route, Router } from '@angular/router';
+import { first, Subject, takeUntil } from 'rxjs';
 import { IDevice } from 'src/app/modules/account/models/interfaces';
 import { DevicesService } from 'src/app/modules/account/services/devices.service';
 
@@ -9,8 +10,9 @@ import { DevicesService } from 'src/app/modules/account/services/devices.service
   templateUrl: './book.component.html',
   styleUrls: ['./book.component.css']
 })
-export class BookDeviceComponent implements OnInit {
+export class BookDeviceComponent implements OnInit, OnDestroy {
 
+  private unsubscriber: Subject<void> = new Subject<void>();
   id!: number;
   device: IDevice = { name: "", id: this.id, year: 0, description: '', isBooked: false, bookings: [] };
 
@@ -35,17 +37,21 @@ export class BookDeviceComponent implements OnInit {
       })
   }
 
+  ngOnDestroy(): void {
+    this.unsubscriber.next();
+    this.unsubscriber.complete();
+  }
+
   onBook() {
     this.devicesService.bookDevice({
       id: this.id,
       start: new Date().toISOString().slice(0, 16),
       end: this.bookForm.value.end,
       comment: this.bookForm.value.comment,
-    }).pipe()
+    }).pipe(takeUntil(this.unsubscriber), first())
       .subscribe(
-        res => {
+        _ => {
           this.router.navigate(['/user'])
-          console.log(res)
         },
         _ => alert('error')
       );

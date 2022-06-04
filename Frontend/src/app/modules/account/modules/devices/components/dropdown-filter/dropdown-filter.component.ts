@@ -1,5 +1,6 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { Subject, takeUntil } from 'rxjs';
 import { ISearchProperty, SearchBy } from '../../interfaces';
 
 @Component({
@@ -7,7 +8,10 @@ import { ISearchProperty, SearchBy } from '../../interfaces';
   templateUrl: './dropdown-filter.component.html',
   styleUrls: ['./dropdown-filter.component.css']
 })
-export class DropdownFilterComponent implements OnInit {
+export class DropdownFilterComponent implements OnInit, OnDestroy {
+
+  private unsubscriber: Subject<void> = new Subject<void>();
+
   public search = new FormControl('');
   @Output() searchChangeValue: EventEmitter<string> = new EventEmitter();
 
@@ -20,9 +24,16 @@ export class DropdownFilterComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    this.search.valueChanges.subscribe(value => {
-      this.searchChangeValue.emit(value);
-    })
+    this.search.valueChanges
+      .pipe(takeUntil(this.unsubscriber))
+      .subscribe(value => {
+        this.searchChangeValue.emit(value);
+      })
+  }
+
+  ngOnDestroy(): void {
+    this.unsubscriber.next();
+    this.unsubscriber.complete();
   }
   
   public onDropdownItemClick(event: any, searchProperty: ISearchProperty){

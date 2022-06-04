@@ -1,8 +1,9 @@
 import { formatPercent } from '@angular/common';
 import { AbsoluteSourceSpan } from '@angular/compiler';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { first, Subject, takeUntil } from 'rxjs';
 import { AccountService } from 'src/app/services/account.service';
 
 @Component({
@@ -10,8 +11,9 @@ import { AccountService } from 'src/app/services/account.service';
   templateUrl: './form-entrance.component.html',
   styleUrls: ['./form-entrance.component.css']
 })
-export class FormEntranceComponent implements OnInit {
+export class FormEntranceComponent implements OnInit, OnDestroy {
 
+  private unsubscriber: Subject<void> = new Subject<void>();
   private readonly emailRegex = new RegExp(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
 
   public loginForm: FormGroup = new FormGroup({
@@ -28,11 +30,17 @@ export class FormEntranceComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  ngOnDestroy(): void {
+    this.unsubscriber.next();
+    this.unsubscriber.complete();
+  }
+
   public onSubmit(){
     this.account.login(
       this.loginForm.controls['email'].value,
       this.loginForm.controls['password'].value,
       true)
+      .pipe(takeUntil(this.unsubscriber), first())
       .subscribe(
       _ => {
         this.router.navigate(['/account/devices'])
