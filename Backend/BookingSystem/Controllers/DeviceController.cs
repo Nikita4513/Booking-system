@@ -145,7 +145,7 @@ namespace BookingSystem.Controllers
                 var deviceBookings = bookings.Where(b => b.DeviceId == device.Id).Select(b => new BookingModel(b)).ToList();
                 device.Bookings = deviceBookings;
             }
-            return Ok(devices);
+            return Ok(devices.Where(d => d.IsBooked).ToList());
         }
 
         /// <summary>

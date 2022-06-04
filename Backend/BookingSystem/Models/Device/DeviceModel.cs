@@ -7,17 +7,14 @@ namespace BookingSystem.Models.Device
 {
     public class DeviceModel
     {
+        private readonly DataBase.Device dbDevice;
         public DeviceModel(DataBase.Device dbDevice)
         {
             Id = dbDevice.Id;
             Name = dbDevice.Name;
             Year = dbDevice.Year;
             Description = dbDevice.Description;
-            IsBooked = false;
-            if (dbDevice.Bookings != null)
-            {
-                IsBooked = dbDevice.Bookings.Any(b => b.Start <= DateTime.Now && b.End >= DateTime.Now);
-            } 
+            this.dbDevice = dbDevice;
         }
 
         public DeviceModel(DataBase.Device dbDevice, List<BookingModel> bookings) : this(dbDevice)
@@ -32,6 +29,15 @@ namespace BookingSystem.Models.Device
         public int Year { get; set; }
         public string Description { get; set; }
         public List<BookingModel> Bookings { get; set; }
-        public bool IsBooked { get; set; }
+        public bool IsBooked { 
+            get 
+            {
+                if (dbDevice.Bookings != null)
+                {
+                    return dbDevice.Bookings.Any(b => DateTime.Now >= b.Start && DateTime.Now <= b.End);
+                }
+                return false;
+            }
+        }
     }
 }
