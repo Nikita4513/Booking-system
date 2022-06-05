@@ -14,8 +14,9 @@ import { DevicesService } from 'src/app/modules/account/services/devices.service
 export class BookDeviceComponent implements OnInit, OnDestroy {
 
   private unsubscriber: Subject<void> = new Subject<void>();
-  id!: number;
-  device: IDevice = { name: "", id: this.id, year: 0, description: '', isBooked: false, bookings: [] };
+  public id!: number;
+  public device: IDevice = { name: "", id: this.id, year: 0, description: '', isBooked: false, bookings: [] };
+  public showAlert: boolean = false;
 
   bookForm = new FormGroup({
     start: new FormControl(''),
@@ -54,9 +55,13 @@ export class BookDeviceComponent implements OnInit, OnDestroy {
     }).pipe(takeUntil(this.unsubscriber), first())
       .subscribe(
         _ => {
+          this.showAlert = false;
           this.router.navigate(['/user'])
         },
-        _ => alert('error')
+        _ => {
+          this.showAlert = true;
+          this.ref.markForCheck();
+        }
       );
   }
 
