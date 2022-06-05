@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
+import { ChangeDetectorRef, Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
 import { first, Subject, takeUntil } from 'rxjs';
 import { IDevice } from '../../../../models/interfaces';
 import { DevicesService } from '../../../../services/devices.service';
@@ -15,13 +15,15 @@ export class DevicesListComponent implements OnInit, OnDestroy {
   @Output('filterChange') update = new EventEmitter();
   
   constructor(
-    private deviceService: DevicesService
+    private deviceService: DevicesService,
+    private ref: ChangeDetectorRef
   ) {
       this.deviceService.getAllDevices()
         .pipe(takeUntil(this.unsubscriber), first())
         .subscribe(devices => {
           this.devices = devices;
           this.allDevices = devices;
+          this.ref.markForCheck();
         });
   }
 
@@ -34,12 +36,12 @@ export class DevicesListComponent implements OnInit, OnDestroy {
   }
 
   public onDropdownItemClick(event: any){
-    console.log(event);
     const dropDownMenu = document.querySelector('.dropdown-toggle');
     dropDownMenu!.innerHTML = event.srcElement.outerText;
   }
 
   public onSearchChanges(value: any) {
-    this.devices = this.allDevices.filter(device => device.name.toLowerCase().includes(value.toLowerCase()))
+    this.devices = this.allDevices.filter(device => device.name.toLowerCase().includes(value.toLowerCase()));
+    this.ref.markForCheck();
   }
 }

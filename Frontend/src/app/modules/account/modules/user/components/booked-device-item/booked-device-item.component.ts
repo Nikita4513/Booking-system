@@ -1,4 +1,4 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { first, Subject, takeUntil } from 'rxjs';
 import { IBooking } from 'src/app/modules/account/models/interfaces';
@@ -8,7 +8,8 @@ import { DevicesComponent } from '../../../devices/devices.component';
 @Component({
   selector: 'app-booked-device-item',
   templateUrl: './booked-device-item.component.html',
-  styleUrls: ['./booked-device-item.component.css']
+  styleUrls: ['./booked-device-item.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class BookedDeviceItemComponent implements OnInit, OnDestroy {
 

@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Subject, takeUntil } from 'rxjs';
 import { ISearchProperty, SearchBy } from '../../interfaces';
@@ -6,7 +6,8 @@ import { ISearchProperty, SearchBy } from '../../interfaces';
 @Component({
   selector: 'app-dropdown-filter',
   templateUrl: './dropdown-filter.component.html',
-  styleUrls: ['./dropdown-filter.component.css']
+  styleUrls: ['./dropdown-filter.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DropdownFilterComponent implements OnInit, OnDestroy {
 

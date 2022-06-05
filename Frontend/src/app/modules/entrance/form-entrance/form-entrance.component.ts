@@ -1,6 +1,6 @@
 import { formatPercent } from '@angular/common';
 import { AbsoluteSourceSpan } from '@angular/compiler';
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { first, Subject, takeUntil } from 'rxjs';
@@ -9,7 +9,8 @@ import { AccountService } from 'src/app/services/account.service';
 @Component({
   selector: 'app-form-entrance',
   templateUrl: './form-entrance.component.html',
-  styleUrls: ['./form-entrance.component.css']
+  styleUrls: ['./form-entrance.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FormEntranceComponent implements OnInit, OnDestroy {
 

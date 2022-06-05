@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Route, Router } from '@angular/router';
 import { first, Subject, takeUntil } from 'rxjs';
@@ -8,7 +8,8 @@ import { DevicesService } from 'src/app/modules/account/services/devices.service
 @Component({
   selector: 'app-book-device',
   templateUrl: './book.component.html',
-  styleUrls: ['./book.component.css']
+  styleUrls: ['./book.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class BookDeviceComponent implements OnInit, OnDestroy {
 
@@ -26,6 +27,7 @@ export class BookDeviceComponent implements OnInit, OnDestroy {
     private router: Router,
     private route: ActivatedRoute,
     private devicesService: DevicesService,
+    private ref: ChangeDetectorRef
   ) {
    }
 
@@ -34,6 +36,7 @@ export class BookDeviceComponent implements OnInit, OnDestroy {
     this.devicesService.getDeviceById(this.id).pipe()
       .subscribe(device => {
         this.device = device;
+        this.ref.markForCheck();
       })
   }
 

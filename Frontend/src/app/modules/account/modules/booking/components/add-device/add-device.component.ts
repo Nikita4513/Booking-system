@@ -1,4 +1,4 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { first, Subject, takeUntil } from 'rxjs';
@@ -8,7 +8,8 @@ import { DevicesService } from 'src/app/modules/account/services/devices.service
 @Component({
   selector: 'app-add-device',
   templateUrl: './add-device.component.html',
-  styleUrls: ['./add-device.component.css']
+  styleUrls: ['./add-device.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AddDeviceComponent implements OnInit, OnDestroy {
 
