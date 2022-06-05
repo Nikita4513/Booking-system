@@ -32,7 +32,6 @@
   </div>
 </form>
 
-<div *ngIf="showAlert" class="alert alert-danger" role="alert">
-  Данное устройство невозможно забронировать
-</div>
-
+<app-alert *ngIf="showAlert"
+  message="Данное устройство невозможно забронировать"
+></app-alert>

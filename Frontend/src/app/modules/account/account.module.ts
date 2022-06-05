@@ -12,7 +12,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     AccountComponent,
-    NavbarComponent,
+    NavbarComponent
   ],
   imports: [
     CommonModule,

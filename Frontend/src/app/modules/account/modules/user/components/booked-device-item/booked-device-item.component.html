@@ -7,7 +7,7 @@
         </div>
         <div class="mb-1">{{ description }}</div>
     </a>
-    <button class="list-group-item btn btn-outline-secondary" (click)="onReturn()">
+    <button class="list-group-item btn btn-outline-secondary" (click)="openModal()">
         <img class='cancel-icon' src="../../../../../../../assets/cancel.svg">
     </button>
 </div>
@@ -23,8 +23,13 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-primary" (click)="onCancelBooking()">Отменить бронь</button>
-            <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="onCloseModal()">Вернуться</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="closeModal()">Вернуться</button>
           </div>
         </div>
       </div>
 </div>
+
+
+<app-alert *ngIf="showAlert"
+  message="Невозможно отменить бронь"
+></app-alert>

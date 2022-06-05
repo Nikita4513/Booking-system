@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { first, Subject, takeUntil } from 'rxjs';
 import { IBooking } from 'src/app/modules/account/models/interfaces';
@@ -14,6 +14,7 @@ import { DevicesComponent } from '../../../devices/devices.component';
 export class BookedDeviceItemComponent implements OnInit, OnDestroy {
 
   private unsubscriber: Subject<void> = new Subject<void>();
+  public showAlert: boolean = false;
 
   @Input()id!: number;
   @Input()name!: string;
@@ -23,7 +24,8 @@ export class BookedDeviceItemComponent implements OnInit, OnDestroy {
 
   constructor(
     private devicesService: DevicesService,
-    private router: Router
+    private router: Router,
+    private ref: ChangeDetectorRef
   ) {
   }
   
@@ -39,14 +41,14 @@ export class BookedDeviceItemComponent implements OnInit, OnDestroy {
     return this.bookings[this.bookings.length - 1];
   }
 
-  public onReturn() : void {
+  public openModal() : void {
     const modal = document.getElementById(`my_modal-${this.id}`);
     if (modal) {
       modal.style.display = "block";
     }
   }
 
-  public onCloseModal() : void {
+  public closeModal() : void {
     const modal = document.getElementById(`my_modal-${this.id}`);
     if (modal) {
       modal.style.display = "none";
@@ -57,7 +59,13 @@ export class BookedDeviceItemComponent implements OnInit, OnDestroy {
     const id = this.getCurrentBookingId();
     this.devicesService.cancelBooking(id)
         .pipe(takeUntil(this.unsubscriber), first())
-        .subscribe(() => this.router.navigate(['devices']))
+        .subscribe(
+          () => this.router.navigate(['devices']),
+          () => {
+            this.showAlert = true;
+            this.closeModal();
+            this.ref.markForCheck();
+          })
   }
 
   private getCurrentBookingId(): number{

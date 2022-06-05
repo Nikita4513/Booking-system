@@ -7,6 +7,8 @@ import { BookedDevicesListComponent } from './components/booked-devices-list/boo
 import { BookedDeviceItemComponent } from './components/booked-device-item/booked-device-item.component';
 import { UserInfoComponent } from './components/user-info/user-info.component';
 import { UserDeviceListComponent } from './components/user-device-list/user-device-list.component';
+import { AlertComponent } from 'src/libs/libs/alert/alert.component';
+import { LibsModule } from 'src/libs/libs/libs.module';
 
 
 @NgModule({
@@ -15,11 +17,13 @@ import { UserDeviceListComponent } from './components/user-device-list/user-devi
     BookedDevicesListComponent,
     BookedDeviceItemComponent,
     UserInfoComponent,
-    UserDeviceListComponent
+    UserDeviceListComponent,
+    // AlertComponent
   ],
   imports: [
     CommonModule,
-    UserRoutingModule
+    UserRoutingModule,
+    LibsModule
   ]
 })
 export class UserModule { }

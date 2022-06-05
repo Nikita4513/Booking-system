@@ -5,18 +5,22 @@ import { BookingComponent } from './booking.component';
 import { BookDeviceComponent } from './components/book/book.component';
 import { AddDeviceComponent } from './components/add-device/add-device.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { AppModule } from 'src/app/app.module';
+import { LibsModule } from 'src/libs/libs/libs.module';
+import { AlertComponent } from 'src/libs/libs/alert/alert.component';
 
 
 @NgModule({
   declarations: [
     BookingComponent,
     BookDeviceComponent,
-    AddDeviceComponent
+    AddDeviceComponent,
   ],
   imports: [
     ReactiveFormsModule,
     CommonModule,
-    BookingRoutingModule
+    BookingRoutingModule,
+    LibsModule
   ],
   providers: [
   ]
