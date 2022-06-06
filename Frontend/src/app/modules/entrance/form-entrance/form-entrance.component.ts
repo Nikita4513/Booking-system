@@ -1,6 +1,6 @@
 import { formatPercent } from '@angular/common';
 import { AbsoluteSourceSpan } from '@angular/compiler';
-import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { first, Subject, takeUntil } from 'rxjs';
@@ -14,6 +14,7 @@ import { AccountService } from 'src/app/services/account.service';
 })
 export class FormEntranceComponent implements OnInit, OnDestroy {
 
+  public showAlert: boolean = false;
   private unsubscriber: Subject<void> = new Subject<void>();
   private readonly emailRegex = new RegExp(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
 
@@ -24,7 +25,8 @@ export class FormEntranceComponent implements OnInit, OnDestroy {
 
   constructor(
     private account: AccountService,
-    private router: Router
+    private router: Router,
+    private ref: ChangeDetectorRef,
     ) {
     }
 
@@ -45,6 +47,10 @@ export class FormEntranceComponent implements OnInit, OnDestroy {
       .subscribe(
       _ => {
         this.router.navigate(['/account/devices'])
+      },
+      _ => {
+        this.showAlert = true;
+        this.ref.markForCheck();
       }
     );
   }

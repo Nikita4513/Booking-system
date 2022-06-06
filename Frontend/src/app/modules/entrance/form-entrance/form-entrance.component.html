@@ -14,3 +14,7 @@
         <button type="submit" [disabled]="!loginForm.valid" class="btn btn-secondary">Войти</button>
     </div>
 </form>
+
+<app-alert *ngIf="showAlert"
+    message="Ошибка: проверьте введенные данные"
+></app-alert>
